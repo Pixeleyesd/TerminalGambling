@@ -3,7 +3,7 @@ import time
 race_events = random.randrange(20,35)
 horses = ['Midnight Dash', 'Silver Hoof', 'Storm Rider', 'Golden Gallop', 'Thunder Bloom', 'Rose Runner', 'Wild Clover', 'Sunfire Spur', 'North Wind', 'Velvet Coast', 'Cinder Stride', 'Mossy Valley', 'Racing Belle', 'Blue Horizon', 'Night Whisper', 'Prairie Star', 'Frost Arrow', 'Iron Echo', 'Canyon Glow', 'Dawn Charge', 'Riverton Rose', 'Long Grass']
 retired_horses = []
-#you can use random.shuffle to make the horses go into a different order
+#use random.shuffle to make the horses go into a different order
 random.shuffle(horses)
 
 print(f"Welcome to another Horse Race!")
