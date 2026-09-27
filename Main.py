@@ -103,7 +103,7 @@ def main():
     else:
         print(f"Save loaded. Current balance: ${data[player_name]}")
     
-    time.sleep(0.1)# Wait for key release to prevent skipping menus
+    time.sleep(0.05)# Wait for key release to prevent skipping menus
 
     # main application loop
     while True:
