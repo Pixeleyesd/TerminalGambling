@@ -59,8 +59,50 @@ def get_menu_selection(title, options, player_balance):
         elif key == "enter":
             return selected_index
 
+def instructions_menu():
+    print("\033c", end="")
+    print("\n" + "="*30)
+    print("--- ROULETTE INSTRUCTIONS ---")
+    print("="*30)
+    print("\nHow to Play:")
+    print("First, choose a category to bet on:")
+    print("- Numbers (0-36): Bet on a specific number.")
+    print("- Colours: Bet on Red or Black.")
+    print("- Odd/Even: Bet on Odd or Even numbers.")
+    print("")
+    print("Payouts:")
+    print("- Numbers: 35x payout (e.g., bet $10, win $350).")
+    print("- Colours & Odd/Even: 2x payout (e.g., bet $10, win $20).")
+    print("")
+    print("Note: The number 0 is Green. Bets on Red/Black")
+    print("or Odd/Even will automatically lose if the ball lands on 0.")
+    print("")
+    
+    # Wait for the enter key to be released and clear the buffer 
+    # so the input doesn't trigger instantly
+    wait_for_key_release()
+    clear_input_buffer()
+    
+    input("[press enter to return to roulette menu]")
+    clear_input_buffer()
+    print("\033c", end="")
+
 def play_roulette(player_balance):
     clear_input_buffer()
+    
+    # Roulette Main Menu
+    while True:
+        main_options = ["Start Roulette", "Instructions", "Back"]
+        main_index = get_menu_selection("ROULETTE", main_options, player_balance)
+        
+        if main_index == 0:
+            break
+        elif main_index == 1:
+            time.sleep(0.05)  #wait for key release to prevent skipping menus
+            instructions_menu()
+        elif main_index == 2:
+            print("\033c", end="")
+            return player_balance
 
     red_numbers = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]
     
