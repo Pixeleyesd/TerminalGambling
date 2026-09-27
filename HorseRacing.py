@@ -9,7 +9,6 @@ if os.name == "nt": #yoinked from stackoverflow so itworks for linux and windows
 else:
     import select
 
-
 def clear_input_buffer(): #yoinked from stackoverflow (i think this is for linux and windows compatibility too...?)
     if os.name == "nt":
         while msvcrt.kbhit():
