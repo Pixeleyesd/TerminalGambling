@@ -3,6 +3,7 @@ import os
 import time
 import keyboard
 from HorseRacing import play_horse_race
+from Roulette import play_roulette
 
 
 SAVE_FILE = "saves.json"
@@ -47,7 +48,7 @@ def get_leaderboard(data):
 
 
 def main_menu(player_name, data):
-    options = ["Play Horse Race", "Exit"]
+    options = ["Play Horse Race", "Play Roulette", "Exit"]
     selected_index = 0
 
     while True:
@@ -102,7 +103,7 @@ def main():
     else:
         print(f"Save loaded. Current balance: ${data[player_name]}")
     
-    time.sleep(0.05)# Wait for key release to prevent skipping menus
+    time.sleep(0.1)# Wait for key release to prevent skipping menus
 
     # main application loop
     while True:
@@ -116,20 +117,25 @@ def main():
             new_balance = play_horse_race(data[player_name])
             data[player_name] = new_balance
             
-            # check for bankruptcy
-            if data[player_name] <= 0:
-                clear_screen()
-                print("You ran out of money, your save has been deleted.")
-                del data[player_name] #this makes it so that if you run out of money, your save is deleted so you aren't softlocked.
-                save_data(data)
-                break
-            else:
-                save_data(data)
-                
-        elif choice == 1: # exit
+        elif choice == 1: # play roulette
+            clear_screen()
+            new_balance = play_roulette(data[player_name])
+            data[player_name] = new_balance
+
+        elif choice == 2: # exit
             clear_screen()
             print("Thanks for playing!")
             break
+
+        # check for bankruptcy after any game
+        if data[player_name] <= 0:
+            clear_screen()
+            print("You ran out of money, your save has been deleted.")
+            del data[player_name] 
+            save_data(data)
+            break
+        else:
+            save_data(data)
 
 
 if __name__ == "__main__":
