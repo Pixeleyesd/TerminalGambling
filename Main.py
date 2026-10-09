@@ -4,7 +4,7 @@ import time
 import keyboard
 from HorseRacing import play_horse_race
 from Roulette import play_roulette
-
+from Blackjack import play_blackjack
 
 SAVE_FILE = "saves.json"
 STARTING_BALANCE = 200
@@ -48,7 +48,7 @@ def get_leaderboard(data):
 
 
 def main_menu(player_name, data):
-    options = ["Play Horse Race", "Play Roulette", "Exit"]
+    options = ["Play Horse Race", "Play Roulette", "Play Blackjack", "Exit"]
     selected_index = 0
 
     while True:
@@ -122,7 +122,12 @@ def main():
             new_balance = play_roulette(data[player_name])
             data[player_name] = new_balance
 
-        elif choice == 2: # exit
+        elif choice == 2: # play blackjack
+            clear_screen()
+            new_balance = play_blackjack(data[player_name])
+            data[player_name] = new_balance
+
+        elif choice == 3: # exit
             clear_screen()
             print("Thanks for playing!")
             break
