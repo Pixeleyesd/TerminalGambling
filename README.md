@@ -1,9 +1,11 @@
 # TerminalGambling
 Three gambling games playable in the terminal!
 
-## Requirements
+## Run Python File
 You need to install the library "keyboard" to run the script.
 To install, run `pip install keyboard`
+
+To play the game, run `python3 Main.py` in the cloned directory.
 
 ## Code Functionality Flowcharts
 
