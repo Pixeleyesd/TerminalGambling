@@ -125,7 +125,7 @@ def play_horse_race(player_balance):
             print("Please enter a valid number.")
 
     # horse setup
-    race_events = random.randrange(20, 35)
+    race_events = random.randrange(10, 15)
     horses = [
         'Midnight Dash', 'Silver Hoof', 'Storm Rider', 'Golden Gallop', 
         'Thunder Bloom', 'Rose Runner', 'Wild Clover', 'Sunfire Spur', 
@@ -380,7 +380,7 @@ def play_horse_race(player_balance):
     if player_horse in horses:
         player_position = horses.index(player_horse) + 1
 
-    if player_position is not None and player_position <= 3:
+    if player_position is not None and player_position == 1:
         winnings = bet_amount * payout_multipliers[player_horse]
         player_balance += winnings
         print(
@@ -390,7 +390,7 @@ def play_horse_race(player_balance):
     else:
         player_balance -= bet_amount
         print(
-            f"\nOh no! Your horse didn't finish on the podium. "
+            f"\nOh no! Your horse didn't finish first. "
             f"You lost your ${bet_amount} bet."
         )
 
