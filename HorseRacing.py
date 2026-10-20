@@ -61,6 +61,8 @@ def instructions_menu():
     clear_input_buffer()
     print("\033c", end="")
 
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear') #google AI overview gave this to me for linux and windows compatibility but ik how this works
 
 def play_horse_race(player_balance):
     clear_input_buffer()
@@ -109,7 +111,8 @@ def play_horse_race(player_balance):
     # bet loop
     while True:
         clear_input_buffer()
-
+        time.sleep(0.05)
+        clear_screen()
         try:
             bet_amount = int(input(f"Enter your bet amount (Max ${player_balance}): $"))
 
