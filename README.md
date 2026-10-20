@@ -27,4 +27,4 @@ It will save in json format (thats how someone on stackoverflow did it and im yo
 
 Using this local save file, I will display the high score (of money) in the main menu, under the game selection part. The games have shared money so this will be the money from all three games.
 
-### Please note, the save file is local only. Nothing will be saved to the cloud as of now.
+#### Please note, the save file is local only. Nothing will be saved to the cloud as of now.
