@@ -59,6 +59,9 @@ def get_menu_selection(title, options, player_balance):
         elif key == "enter":
             return selected_index
 
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear') #google AI overview gave this to me for linux and windows compatibility but ik how this works
+
 def instructions_menu():
     print("\033c", end="")
     print("\n" + "="*30)
@@ -162,12 +165,26 @@ def play_roulette(player_balance):
     # Spin the Wheel
     print("\033c", end="")
     print(f"You placed ${bet_amount} on {bet_target}.")
-    print("Spinning the wheel...")
-
-    input("\n[press enter continue]")
     
     winning_number = random.randint(0, 36)
-    
+    delay = 0.01
+    subtracted_value = 36
+    x = 0
+    while subtracted_value > 0:
+        x = winning_number - subtracted_value
+
+        time.sleep(delay)
+
+        delay = delay*1.1
+        
+        subtracted_value = subtracted_value - 1
+
+        clear_screen()
+        print("Spinning the wheel...")
+        print(-x if x < 0 else x)
+
+    clear_screen()
+
     # determine attributes of the winning number
     if winning_number == 0:
         winning_color = "Green"
