@@ -22,6 +22,7 @@ def wait_for_key_release():
         keyboard.is_pressed("up")
         or keyboard.is_pressed("down")
         or keyboard.is_pressed("enter")
+        or keyboard.is_pressed("esc")
     ):
         time.sleep(0.05)
 
@@ -74,8 +75,8 @@ def instructions_menu():
     print("- Aces are worth 1 or 11 (whichever benefits you more).")
     print("")
     print("Actions:")
-    print("- Hit: Draw another card.")
-    print("- Stand: Keep your current hand and end your turn.")
+    print("- Hit: Press ENTER to draw another card.")
+    print("- Stand: Press ESC to keep your current hand and end your turn.")
     print("")
     print("The dealer must continue to hit until their total")
     print("is 17 or higher. Beating the dealer pays 2x your bet.")
@@ -85,6 +86,7 @@ def instructions_menu():
     
     wait_for_key_release()
     clear_input_buffer()
+    time.sleep(0.05)
     input("[press enter to return to blackjack menu]")
     clear_input_buffer()
     print("\033c", end="")
@@ -150,30 +152,43 @@ def play_blackjack(player_balance):
     # Player's Turn
     while True:
         player_score = calculate_score(player_hand)
+        dealer_visible_score = calculate_score([dealer_hand[0]])
         
         print("\033c", end="")
         print(f"--- BLACKJACK ---")
         print(f"Bet: ${bet_amount}")
         print(f"\nDealer's Hand:")
-        print(f"[{dealer_hand[0]}] [?]")
+        print(f"[{dealer_hand[0]}] [?] (Score: {dealer_visible_score})")
         
         print(f"\nYour Hand: {player_hand} (Score: {player_score})")
         
         if player_score == 21:
             print("\nBlackjack!")
-            input("[press enter to continue]")
+            time.sleep(0.5)
             break
         elif player_score > 21:
             print("\nBust!")
-            input("[press enter to continue]")
+            time.sleep(0.2)
             break
             
-        options = ["Hit", "Stand"]
+        print("\n[ENTER] Hit  |  [ESC] Stand")
         wait_for_key_release()
-        choice = get_menu_selection("YOUR MOVE", options, player_balance)
+        
+        # grabbing enter or esc for player action
+        choice = None
+        while True:
+            event = keyboard.read_event(suppress=True)
+            if event.event_type == keyboard.KEY_DOWN:
+                if event.name == "enter":
+                    choice = 0
+                    break
+                elif event.name == "esc":
+                    choice = 1
+                    break
         
         if choice == 0:
             player_hand.append(deck.pop())
+            continue
         elif choice == 1:
             break
             
@@ -181,21 +196,22 @@ def play_blackjack(player_balance):
     player_score = calculate_score(player_hand)
     
     if player_score <= 21:
+        time.sleep(0.2) # wait a sec before the dealer actually starts playing so it doesnt snap instantly
         print("\033c", end="")
         print(f"--- DEALER's TURN ---")
         dealer_score = calculate_score(dealer_hand)
         print(f"Dealer reveals hand: {dealer_hand} (Score: {dealer_score})")
-        input("[press enter to continue]")
+        time.sleep(0.2) # chill for a sec so the player can actually see what the dealer flipped automatically
         
         while dealer_score < 17:
             dealer_hand.append(deck.pop())
             dealer_score = calculate_score(dealer_hand)
             print(f"Dealer hits: {dealer_hand[-1]}")
             print(f"Dealer hand: {dealer_hand} (Score: {dealer_score})")
-            input("[press enter to continue]")
+            time.sleep(0.5) #wait a bit between each hit so it plays out more aurafully
             
     # Evaluate outcome
-    print("\n--- RESULTS ---")
+    print("--- RESULTS ---")
     dealer_score = calculate_score(dealer_hand)
     
     if player_score > 21:
@@ -215,6 +231,7 @@ def play_blackjack(player_balance):
 
     wait_for_key_release()
     clear_input_buffer()
+    time.sleep(0.05)
     input("\n[press enter to return to menu]")
     clear_input_buffer()
     print("\033c", end="")
