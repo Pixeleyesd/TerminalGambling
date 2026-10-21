@@ -196,7 +196,7 @@ def play_roulette(player_balance):
         
         subtracted_value = subtracted_value - 1
 
-    print("\n")
+    clear_screen()
 
     # determine attributes of the winning number
     if winning_number == 0:
