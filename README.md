@@ -17,7 +17,7 @@ To play the game, run `python3 Main.py` in the cloned directory.
 You scroll the list of horses to bet on, and press enter on the horse you wish to bet on winning. There are different probabilities of the horses winning and higher payouts on the lower probability horses and lower on the higher probability horses. There will be “events” or things that happen in the race every second, with race commentary-like text on screen. After the race, it will display the places each horse got. You will get the payout if the horse got on the podium (top 3).
 
 ### Roulette
-You to bet on the given numbers, colours, or whether it is odd or even. At the beginning you will select the category by going up or down, with the options being “numbers”, “colours”, “odd/even”, maybe more being added later. In the submenu you’ll just select the options based on what options you are presented with.
+You to bet on the given numbers, colours, or whether it is odd or even. At the beginning you will select the category by going up or down, with the options being “numbers”, “colours”, “odd/even”, maybe more being added later. In the submenu you’ll just select the options based on what options you are presented with. The ball will appear to roll across different numbers before landing on the correct one when you play any of the options in the Roulette game.
 
 ### Blackjack
 Each round, your goal is to draw cards to try get as close to 21 as possible without going over, and beat the dealer. You have to try to make as much money as possible.
