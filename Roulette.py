@@ -164,7 +164,8 @@ def play_roulette(player_balance):
 
     # Spin the Wheel
     print("\033c", end="")
-    print(f"You placed ${bet_amount} on {bet_target}.")
+    print(f"You placed ${bet_amount} on {bet_target}.\n")
+    print("Spinning the wheel...\n")
     
     winning_number = random.randint(0, 36)
     delay = 0.01
@@ -172,6 +173,22 @@ def play_roulette(player_balance):
     x = 0
     while subtracted_value > 0:
         x = winning_number - subtracted_value
+        current_num = -x if x < 0 else x
+        current_num = current_num % 37
+
+        if current_num == 0: #grabbed the colours off Gemini so I knew what colours to highlight with, I did not steal the code from Gemini, though it did give me an example section of code
+            color_code = "\033[92m"  # Green
+            color_name = "Green"
+        elif current_num in red_numbers:
+            color_code = "\033[91m"  # Red
+            color_name = "Red  "
+        else:
+            color_code = "\033[97m"  # White (Black)
+            color_name = "Black"
+
+        # Using \r overwrites the single line without clear_screen flickering
+        sys.stdout.write(f"\r   > {color_code}[ {current_num:02d} ] - {color_name}\033[0m <")
+        sys.stdout.flush()
 
         time.sleep(delay)
 
@@ -179,11 +196,7 @@ def play_roulette(player_balance):
         
         subtracted_value = subtracted_value - 1
 
-        clear_screen()
-        print("Spinning the wheel...")
-        print(-x if x < 0 else x)
-
-    clear_screen()
+    print("\n")
 
     # determine attributes of the winning number
     if winning_number == 0:
@@ -193,7 +206,14 @@ def play_roulette(player_balance):
         winning_color = "Red" if winning_number in red_numbers else "Black"
         winning_parity = "Even" if winning_number % 2 == 0 else "Odd"
 
-    print(f"\nTHE BALL LANDED ON: {winning_number} ({winning_color})")
+    if winning_color == "Green":
+        final_color = "\033[92m"
+    elif winning_color == "Red":
+        final_color = "\033[91m"
+    else:
+        final_color = "\033[97m"
+        
+    print(f"THE BALL LANDED ON: {final_color}{winning_number} ({winning_color})\033[0m")
 
     # now evaluate Win/Loss
     won = False
