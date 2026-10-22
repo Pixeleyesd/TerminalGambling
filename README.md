@@ -5,7 +5,7 @@ Three gambling games playable in the terminal!
 You need to install the library "keyboard" to run the script.
 To install, run `pip install keyboard`
 
-To play the game, run `python3 Main.py` in the cloned directory.
+To play the game, run `python3 Main.py` in the game directory.
 
 ## Code Functionality Flowcharts
 
@@ -28,3 +28,10 @@ It will save in json format (thats how someone on stackoverflow did it and im yo
 Using this local save file, I will display the high score (of money) in the main menu, under the game selection part. The games have shared money so this will be the money from all three games.
 
 #### Please note, the save file is local only. Nothing will be saved to the cloud as of now.
+
+## Final Iteration Testing and Justification
+### High Quality Justification:
+My outcome is of high quality because it successfully balances functionality and usability to meet the brief of creating an engaging, terminal-based betting game. Throughout the development of the Menu, Horse Racing, Roulette, and Blackjack components, I ensured that the functionality accurately reflected real-world gambling; the money can be gained by playing, but the odds are balanced so they are slightly against the player in the long run. In terms of design and usability, the program is intuitive for the end user, utilizing a consistent menu style with arrow key navigation, debounce code to prevent input queuing, and clear instruction tabs for each game. The aesthetics and pacing werecloned significantly improved during the second iterations to build suspense and user engagement; this included adding a spinning emulation with strobing colored text in Roulette, reducing the race time in the Horse Race from 10-15 seconds to 5-8 seconds to make gameplay more repeatable, and updating the Blackjack UI so the dealer's turn plays out smoothly without manual keypresses.
+
+### Testing and Evidence:
+The testing of my outcome provides strong evidence for this high quality, relying heavily on both functional trialing and direct end-user feedback from my playtesters, Nils, Lewis, Zach, and Sam. Functionally, I repeatedly tested the games to ensure there were no glitches, such as spamming inputs to verify the menu debounce and running the games multiple times to confirm the win/loss probability balancing. More importantly, stakeholder testing drove key usability improvements; for instance, Sam suggested adding brackets and arrows to make the Roulette winning number visually clearer, while Nils suggested having the Blackjack dealer wait 0.2 seconds between plays rather than requiring the user to press enter. Their feedback also directly shaped the Horse Race game, leading to adjusted horse probabilities and payout percentages to ensure it felt fair to the player while remaining realistic.
